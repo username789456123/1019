@@ -1,0 +1,41 @@
+#include <stdio.h>
+int main()
+{
+	int n,i,j,k,min=0,max=0,ans;
+	int num[4];
+	scanf("%d",&n);
+	num[0]=n/1000;
+	num[1]=n/100%10;
+	num[2]=n/10%10;
+	num[3]=n%10;
+	if(num[0]==num[1]&&num[0]==num[2]&&num[0]==num[3])
+	{
+		printf("%d + %d = 0000",n,n);
+	}
+	else if(n==6174)
+	{
+		printf("7541 - 1467 = 6174");
+	}
+	else 
+	{
+		while(n!=6174){
+			for(i=0;i<3;j++){
+				for(j=1+j;j<4;j++){
+					if(num[j]<num[i]){
+						k=num[j];
+						num[j]=num[i];
+						num[i]=k;
+					}
+				}
+			}
+			min=num[0]*1000+num[1]*100+num[2]*10+num[3];
+			max=num[3]*1000+num[2]*100+num[1]*10+num[0];
+			n=max-min;
+			num[0]=n/1000;
+			num[1]=n/100%10;
+			num[2]=n/10%10;
+			num[3]=n%10;
+			printf("%04d - %04d= %d%d%d%d\n",max,min,num[0],num[2],num[3]);
+		}
+	}
+}
